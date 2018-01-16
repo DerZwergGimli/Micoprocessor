@@ -1,0 +1,1504 @@
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.5.0
+OBJECT MODULE PLACED IN .\Objects\CompulsoryTask_1.obj
+ASSEMBLER INVOKED BY: C:\Program Files\Keil_v5\C51\BIN\A51.EXE CompulsoryTask_1.asm SET(SMALL) DEBUG PRINT(.\Listings\Co
+                      mpulsoryTask_1.lst) OBJECT(.\Objects\CompulsoryTask_1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     $nomod51 
+
+                       2     ;$include (hska_include_.inc)
+
+                +1     3     ;*********************************************************
+
+                +1     4     ; Program Description
+
+                +1     5     ; - File: hska_include_.inc
+
+                +1     6     ; - Autor, Date: Reiner Kriesten, 2010-04-01:
+
+                +1     7     ; - Creation:
+
+                +1     8     ; -- copy SFRs out of DAVE, save in separate Header
+
+                +1     9     ; -- include Header in separate C-File and generate SRC-file
+
+                +1    10     ; (via right-click on C-File in project window)
+
+                +1    11     ; -- include further your own definitions
+
+                +1    12     ;
+
+                +1    13     ; - Attention:
+
+                +1    14     ; -- use "Keep Variables in Order" flag
+
+                +1    15     ; (option for C-File (right mouse click), Tab C51)
+
+                +1    16     ; -- in order to get Port Names create IO.h out of DAVE.
+
+                +1    17     ; This is done by activating (clicking) IO_vInit
+
+                +1    18     ;
+
+                +1    19     ; - Use of this file:
+
+                +1    20     ; -- one-time action: copy File into standard KEIL Folder
+
+                +1    21     ; (e.g. \KEIL\C51\A51)
+
+                +1    22     ; -- assembler program file: insert statement
+
+                +1    23     ; "$include(hska_include_.inc)"
+
+                +1    24     ;*********************************************************
+
+                +1    25     $nomod51  ;NOMOD51 directive suppresses pre-definition
+
+                +1    26     ; of 8051 SFR names.
+
+                +1    27     NAME HSKA_INCLUDE_
+
+                +1    28     ; ******************************************************
+
+                +1    29     ; ******* SFR-Definitionen HSKA: Reiner Kriesten *******
+
+                +1    30     ; ** SFRs that have addresses in the form of 1XXXX000B
+
+                +1    31     ; ** (e.g., 80H, 88H, 90H, ..., F0H, F8H) are bitaddressable.
+
+                +1    32     ; ******************************************************
+
+  0080          +1    33     P0_0 BIT 080H
+
+  0081          +1    34     P0_1 BIT 081H
+
+  0082          +1    35     P0_2 BIT 082H
+
+  0083          +1    36     P0_3 BIT 083H
+
+  0084          +1    37     P0_4 BIT 084H
+
+  0085          +1    38     P0_5 BIT 085H
+
+  0086          +1    39     P0_6 BIT 086H
+
+  0087          +1    40     P0_7 BIT 087H
+
+  0090          +1    41     P1_0 BIT 090H
+
+  0091          +1    42     P1_1 BIT 091H
+
+  0092          +1    43     P1_2 BIT 092H
+
+  0093          +1    44     P1_3 BIT 093H
+
+  0094          +1    45     P1_4 BIT 094H
+
+  0095          +1    46     P1_5 BIT 095H
+
+  0096          +1    47     P1_6 BIT 096H
+
+  0097          +1    48     P1_7 BIT 097H
+
+  00A0          +1    49     P2_0 BIT 0A0H
+
+  00A1          +1    50     P2_1 BIT 0A1H
+
+  00A2          +1    51     P2_2 BIT 0A2H
+
+  00A3          +1    52     P2_3 BIT 0A3H
+
+  00A4          +1    53     P2_4 BIT 0A4H
+
+  00A5          +1    54     P2_5 BIT 0A5H
+
+  00A6          +1    55     P2_6 BIT 0A6H
+
+  00A7          +1    56     P2_7 BIT 0A7H
+
+  00B0          +1    57     P3_0 BIT 0B0H
+
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE     2
+
+  00B1          +1    58     P3_1 BIT 0B1H
+
+  00B2          +1    59     P3_2 BIT 0B2H
+
+  00B3          +1    60     P3_3 BIT 0B3H
+
+  00B4          +1    61     P3_4 BIT 0B4H
+
+  00B5          +1    62     P3_5 BIT 0B5H
+
+  00B6          +1    63     P3_6 BIT 0B6H
+
+  00B7          +1    64     P3_7 BIT 0B7H
+
+  00C8          +1    65     P4_0 BIT 0C8H
+
+  00C9          +1    66     P4_1 BIT 0C9H
+
+  00CA          +1    67     P4_2 BIT 0CAH
+
+  00CB          +1    68     P4_3 BIT 0CBH
+
+  00CC          +1    69     P4_4 BIT 0CCH
+
+  00CD          +1    70     P4_5 BIT 0CDH
+
+  00CE          +1    71     P4_6 BIT 0CEH
+
+  00CF          +1    72     P4_7 BIT 0CFH
+
+                +1    73     ; Port 5 is not bit adressable
+
+                +1    74     ; ******************************************************
+
+                +1    75     ; ******* SFR-Defintionen from DAVE (thanks);-)) *******
+
+                +1    76     ; ******************************************************
+
+  00E0          +1    77     ACC DATA 0E0H
+
+  00CA          +1    78     ADC_CHCTR0 DATA 0CAH
+
+  00CB          +1    79     ADC_CHCTR1 DATA 0CBH
+
+  00CC          +1    80     ADC_CHCTR2 DATA 0CCH
+
+  00CD          +1    81     ADC_CHCTR3 DATA 0CDH
+
+  00CE          +1    82     ADC_CHCTR4 DATA 0CEH
+
+  00CF          +1    83     ADC_CHCTR5 DATA 0CFH
+
+  00D2          +1    84     ADC_CHCTR6 DATA 0D2H
+
+  00D3          +1    85     ADC_CHCTR7 DATA 0D3H
+
+  00CB          +1    86     ADC_CHINCR DATA 0CBH
+
+  00CA          +1    87     ADC_CHINFR DATA 0CAH
+
+  00CD          +1    88     ADC_CHINPR DATA 0CDH
+
+  00CC          +1    89     ADC_CHINSR DATA 0CCH
+
+  00CA          +1    90     ADC_CRCR1 DATA 0CAH
+
+  00CC          +1    91     ADC_CRMR1 DATA 0CCH
+
+  00CB          +1    92     ADC_CRPR1 DATA 0CBH
+
+  00CF          +1    93     ADC_ETRCR DATA 0CFH
+
+  00CF          +1    94     ADC_EVINCR DATA 0CFH
+
+  00CE          +1    95     ADC_EVINFR DATA 0CEH
+
+  00D3          +1    96     ADC_EVINPR DATA 0D3H
+
+  00D2          +1    97     ADC_EVINSR DATA 0D2H
+
+  00CA          +1    98     ADC_GLOBCTR DATA 0CAH
+
+  00CB          +1    99     ADC_GLOBSTR DATA 0CBH
+
+  00CE          +1   100     ADC_INPCR0 DATA 0CEH
+
+  00CD          +1   101     ADC_LCBR DATA 0CDH
+
+  00D1          +1   102     ADC_PAGE DATA 0D1H
+
+  00CC          +1   103     ADC_PRAR DATA 0CCH
+
+  00CF          +1   104     ADC_Q0R0 DATA 0CFH
+
+  00D2          +1   105     ADC_QBUR0 DATA 0D2H
+
+  00D2          +1   106     ADC_QINR0 DATA 0D2H
+
+  00CD          +1   107     ADC_QMR0 DATA 0CDH
+
+  00CE          +1   108     ADC_QSR0 DATA 0CEH
+
+  00CA          +1   109     ADC_RCR0 DATA 0CAH
+
+  00CB          +1   110     ADC_RCR1 DATA 0CBH
+
+  00CC          +1   111     ADC_RCR2 DATA 0CCH
+
+  00CD          +1   112     ADC_RCR3 DATA 0CDH
+
+  00CB          +1   113     ADC_RESR0H DATA 0CBH
+
+  00CA          +1   114     ADC_RESR0L DATA 0CAH
+
+  00CD          +1   115     ADC_RESR1H DATA 0CDH
+
+  00CC          +1   116     ADC_RESR1L DATA 0CCH
+
+  00CF          +1   117     ADC_RESR2H DATA 0CFH
+
+  00CE          +1   118     ADC_RESR2L DATA 0CEH
+
+  00D3          +1   119     ADC_RESR3H DATA 0D3H
+
+  00D2          +1   120     ADC_RESR3L DATA 0D2H
+
+  00CB          +1   121     ADC_RESRA0H DATA 0CBH
+
+  00CA          +1   122     ADC_RESRA0L DATA 0CAH
+
+  00CD          +1   123     ADC_RESRA1H DATA 0CDH
+
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE     3
+
+  00CC          +1   124     ADC_RESRA1L DATA 0CCH
+
+  00CF          +1   125     ADC_RESRA2H DATA 0CFH
+
+  00CE          +1   126     ADC_RESRA2L DATA 0CEH
+
+  00D3          +1   127     ADC_RESRA3H DATA 0D3H
+
+  00D2          +1   128     ADC_RESRA3L DATA 0D2H
+
+  00CE          +1   129     ADC_VFCR DATA 0CEH
+
+  00F0          +1   130     B DATA 0F0H
+
+  00BD          +1   131     BCON DATA 0BDH
+
+  00BE          +1   132     BG DATA 0BEH
+
+  00D8          +1   133     CAN_ADCON DATA 0D8H
+
+  00DA          +1   134     CAN_ADH DATA 0DAH
+
+  00D9          +1   135     CAN_ADL DATA 0D9H
+
+  00DB          +1   136     CAN_DATA0 DATA 0DBH
+
+  00DC          +1   137     CAN_DATA1 DATA 0DCH
+
+  00DD          +1   138     CAN_DATA2 DATA 0DDH
+
+  00DE          +1   139     CAN_DATA3 DATA 0DEH
+
+  00FB          +1   140     CCU6_CC60RH DATA 0FBH
+
+  00FA          +1   141     CCU6_CC60RL DATA 0FAH
+
+  00FB          +1   142     CCU6_CC60SRH DATA 0FBH
+
+  00FA          +1   143     CCU6_CC60SRL DATA 0FAH
+
+  00FD          +1   144     CCU6_CC61RH DATA 0FDH
+
+  00FC          +1   145     CCU6_CC61RL DATA 0FCH
+
+  00FD          +1   146     CCU6_CC61SRH DATA 0FDH
+
+  00FC          +1   147     CCU6_CC61SRL DATA 0FCH
+
+  00FF          +1   148     CCU6_CC62RH DATA 0FFH
+
+  00FE          +1   149     CCU6_CC62RL DATA 0FEH
+
+  00FF          +1   150     CCU6_CC62SRH DATA 0FFH
+
+  00FE          +1   151     CCU6_CC62SRL DATA 0FEH
+
+  009B          +1   152     CCU6_CC63RH DATA 09BH
+
+  009A          +1   153     CCU6_CC63RL DATA 09AH
+
+  009B          +1   154     CCU6_CC63SRH DATA 09BH
+
+  009A          +1   155     CCU6_CC63SRL DATA 09AH
+
+  00A7          +1   156     CCU6_CMPMODIFH DATA 0A7H
+
+  00A6          +1   157     CCU6_CMPMODIFL DATA 0A6H
+
+  00FF          +1   158     CCU6_CMPSTATH DATA 0FFH
+
+  00FE          +1   159     CCU6_CMPSTATL DATA 0FEH
+
+  009D          +1   160     CCU6_IENH DATA 09DH
+
+  009C          +1   161     CCU6_IENL DATA 09CH
+
+  009F          +1   162     CCU6_INPH DATA 09FH
+
+  009E          +1   163     CCU6_INPL DATA 09EH
+
+  009D          +1   164     CCU6_ISH DATA 09DH
+
+  009C          +1   165     CCU6_ISL DATA 09CH
+
+  00A5          +1   166     CCU6_ISRH DATA 0A5H
+
+  00A4          +1   167     CCU6_ISRL DATA 0A4H
+
+  00A5          +1   168     CCU6_ISSH DATA 0A5H
+
+  00A4          +1   169     CCU6_ISSL DATA 0A4H
+
+  00A7          +1   170     CCU6_MCMCTR DATA 0A7H
+
+  009B          +1   171     CCU6_MCMOUTH DATA 09BH
+
+  009A          +1   172     CCU6_MCMOUTL DATA 09AH
+
+  009F          +1   173     CCU6_MCMOUTSH DATA 09FH
+
+  009E          +1   174     CCU6_MCMOUTSL DATA 09EH
+
+  00FD          +1   175     CCU6_MODCTRH DATA 0FDH
+
+  00FC          +1   176     CCU6_MODCTRL DATA 0FCH
+
+  00A3          +1   177     CCU6_PAGE DATA 0A3H
+
+  009F          +1   178     CCU6_PISEL0H DATA 09FH
+
+  009E          +1   179     CCU6_PISEL0L DATA 09EH
+
+  00A4          +1   180     CCU6_PISEL2 DATA 0A4H
+
+  00A6          +1   181     CCU6_PSLR DATA 0A6H
+
+  00A5          +1   182     CCU6_T12DTCH DATA 0A5H
+
+  00A4          +1   183     CCU6_T12DTCL DATA 0A4H
+
+  00FB          +1   184     CCU6_T12H DATA 0FBH
+
+  00FA          +1   185     CCU6_T12L DATA 0FAH
+
+  009B          +1   186     CCU6_T12MSELH DATA 09BH
+
+  009A          +1   187     CCU6_T12MSELL DATA 09AH
+
+  009D          +1   188     CCU6_T12PRH DATA 09DH
+
+  009C          +1   189     CCU6_T12PRL DATA 09CH
+
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE     4
+
+  00FD          +1   190     CCU6_T13H DATA 0FDH
+
+  00FC          +1   191     CCU6_T13L DATA 0FCH
+
+  009F          +1   192     CCU6_T13PRH DATA 09FH
+
+  009E          +1   193     CCU6_T13PRL DATA 09EH
+
+  00A7          +1   194     CCU6_TCTR0H DATA 0A7H
+
+  00A6          +1   195     CCU6_TCTR0L DATA 0A6H
+
+  00FB          +1   196     CCU6_TCTR2H DATA 0FBH
+
+  00FA          +1   197     CCU6_TCTR2L DATA 0FAH
+
+  009D          +1   198     CCU6_TCTR4H DATA 09DH
+
+  009C          +1   199     CCU6_TCTR4L DATA 09CH
+
+  00FF          +1   200     CCU6_TRPCTRH DATA 0FFH
+
+  00FE          +1   201     CCU6_TRPCTRL DATA 0FEH
+
+  00A1          +1   202     CD_CON DATA 0A1H
+
+  009B          +1   203     CD_CORDXH DATA 09BH
+
+  009A          +1   204     CD_CORDXL DATA 09AH
+
+  009D          +1   205     CD_CORDYH DATA 09DH
+
+  009C          +1   206     CD_CORDYL DATA 09CH
+
+  009F          +1   207     CD_CORDZH DATA 09FH
+
+  009E          +1   208     CD_CORDZL DATA 09EH
+
+  00A0          +1   209     CD_STATC DATA 0A0H
+
+  00BA          +1   210     CMCON DATA 0BAH
+
+  00BE          +1   211     COCON DATA 0BEH
+
+  0083          +1   212     DPH DATA 083H
+
+  0082          +1   213     DPL DATA 082H
+
+  00A2          +1   214     EO DATA 0A2H
+
+  00B7          +1   215     EXICON0 DATA 0B7H
+
+  00BA          +1   216     EXICON1 DATA 0BAH
+
+  00E9          +1   217     FDCON DATA 0E9H
+
+  00EB          +1   218     FDRES DATA 0EBH
+
+  00EA          +1   219     FDSTEP DATA 0EAH
+
+  00BD          +1   220     FEAH DATA 0BDH
+
+  00BC          +1   221     FEAL DATA 0BCH
+
+  00F7          +1   222     HWBPDR DATA 0F7H
+
+  00F6          +1   223     HWBPSR DATA 0F6H
+
+  00B3          +1   224     ID DATA 0B3H
+
+  00A8          +1   225     IEN0 DATA 0A8H
+
+  00E8          +1   226     IEN1 DATA 0E8H
+
+  00B8          +1   227     IP DATA 0B8H
+
+  00F8          +1   228     IP1 DATA 0F8H
+
+  00B9          +1   229     IPH DATA 0B9H
+
+  00F9          +1   230     IPH1 DATA 0F9H
+
+  00B4          +1   231     IRCON0 DATA 0B4H
+
+  00B5          +1   232     IRCON1 DATA 0B5H
+
+  00B6          +1   233     IRCON2 DATA 0B6H
+
+  00B4          +1   234     IRCON3 DATA 0B4H
+
+  00B5          +1   235     IRCON4 DATA 0B5H
+
+  00B2          +1   236     MDU_MD0 DATA 0B2H
+
+  00B3          +1   237     MDU_MD1 DATA 0B3H
+
+  00B4          +1   238     MDU_MD2 DATA 0B4H
+
+  00B5          +1   239     MDU_MD3 DATA 0B5H
+
+  00B6          +1   240     MDU_MD4 DATA 0B6H
+
+  00B7          +1   241     MDU_MD5 DATA 0B7H
+
+  00B1          +1   242     MDU_MDUCON DATA 0B1H
+
+  00B0          +1   243     MDU_MDUSTAT DATA 0B0H
+
+  00B2          +1   244     MDU_MR0 DATA 0B2H
+
+  00B3          +1   245     MDU_MR1 DATA 0B3H
+
+  00B4          +1   246     MDU_MR2 DATA 0B4H
+
+  00B5          +1   247     MDU_MR3 DATA 0B5H
+
+  00B6          +1   248     MDU_MR4 DATA 0B6H
+
+  00B7          +1   249     MDU_MR5 DATA 0B7H
+
+  00E9          +1   250     MISC_CON DATA 0E9H
+
+  00F3          +1   251     MMBPCR DATA 0F3H
+
+  00F1          +1   252     MMCR DATA 0F1H
+
+  00E9          +1   253     MMCR2 DATA 0E9H
+
+  00F5          +1   254     MMDR DATA 0F5H
+
+  00F4          +1   255     MMICR DATA 0F4H
+
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE     5
+
+  00F2          +1   256     MMSR DATA 0F2H
+
+  00EB          +1   257     MMWR1 DATA 0EBH
+
+  00EC          +1   258     MMWR2 DATA 0ECH
+
+  00B3          +1   259     MODPISEL DATA 0B3H
+
+  00B7          +1   260     MODPISEL1 DATA 0B7H
+
+  00BA          +1   261     MODPISEL2 DATA 0BAH
+
+  00BD          +1   262     MODSUSP DATA 0BDH
+
+  00BB          +1   263     NMICON DATA 0BBH
+
+  00BC          +1   264     NMISR DATA 0BCH
+
+  00B6          +1   265     OSC_CON DATA 0B6H
+
+  0080          +1   266     P0_ALTSEL0 DATA 080H
+
+  0086          +1   267     P0_ALTSEL1 DATA 086H
+
+  0080          +1   268     P0_DATA DATA 080H
+
+  0086          +1   269     P0_DIR DATA 086H
+
+  0080          +1   270     P0_OD DATA 080H
+
+  0086          +1   271     P0_PUDEN DATA 086H
+
+  0080          +1   272     P0_PUDSEL DATA 080H
+
+  0090          +1   273     P1_ALTSEL0 DATA 090H
+
+  0091          +1   274     P1_ALTSEL1 DATA 091H
+
+  0090          +1   275     P1_DATA DATA 090H
+
+  0091          +1   276     P1_DIR DATA 091H
+
+  0090          +1   277     P1_OD DATA 090H
+
+  0091          +1   278     P1_PUDEN DATA 091H
+
+  0090          +1   279     P1_PUDSEL DATA 090H
+
+  00A0          +1   280     P2_DATA DATA 0A0H
+
+  00A1          +1   281     P2_DIR DATA 0A1H
+
+  00A1          +1   282     P2_PUDEN DATA 0A1H
+
+  00A0          +1   283     P2_PUDSEL DATA 0A0H
+
+  00B0          +1   284     P3_ALTSEL0 DATA 0B0H
+
+  00B1          +1   285     P3_ALTSEL1 DATA 0B1H
+
+  00B0          +1   286     P3_DATA DATA 0B0H
+
+  00B1          +1   287     P3_DIR DATA 0B1H
+
+  00B0          +1   288     P3_OD DATA 0B0H
+
+  00B1          +1   289     P3_PUDEN DATA 0B1H
+
+  00B0          +1   290     P3_PUDSEL DATA 0B0H
+
+  00C8          +1   291     P4_ALTSEL0 DATA 0C8H
+
+  00C9          +1   292     P4_ALTSEL1 DATA 0C9H
+
+  00C8          +1   293     P4_DATA DATA 0C8H
+
+  00C9          +1   294     P4_DIR DATA 0C9H
+
+  00C8          +1   295     P4_OD DATA 0C8H
+
+  00C9          +1   296     P4_PUDEN DATA 0C9H
+
+  00C8          +1   297     P4_PUDSEL DATA 0C8H
+
+  0092          +1   298     P5_ALTSEL0 DATA 092H
+
+  0093          +1   299     P5_ALTSEL1 DATA 093H
+
+  0092          +1   300     P5_DATA DATA 092H
+
+  0093          +1   301     P5_DIR DATA 093H
+
+  0092          +1   302     P5_OD DATA 092H
+
+  0093          +1   303     P5_PUDEN DATA 093H
+
+  0092          +1   304     P5_PUDSEL DATA 092H
+
+  00BB          +1   305     PASSWD DATA 0BBH
+
+  0087          +1   306     PCON DATA 087H
+
+  00B7          +1   307     PLL_CON DATA 0B7H
+
+  00B4          +1   308     PMCON0 DATA 0B4H
+
+  00B5          +1   309     PMCON1 DATA 0B5H
+
+  00BB          +1   310     PMCON2 DATA 0BBH
+
+  00B2          +1   311     PORT_PAGE DATA 0B2H
+
+  00D0          +1   312     PSW DATA 0D0H
+
+  0099          +1   313     SBUF DATA 099H
+
+  0098          +1   314     SCON DATA 098H
+
+  00BF          +1   315     SCU_PAGE DATA 0BFH
+
+  0081          +1   316     SP DATA 081H
+
+  00AF          +1   317     SSC_BRH DATA 0AFH
+
+  00AE          +1   318     SSC_BRL DATA 0AEH
+
+  00AB          +1   319     SSC_CONH_O DATA 0ABH
+
+  00AB          +1   320     SSC_CONH_P DATA 0ABH
+
+  00AA          +1   321     SSC_CONL_O DATA 0AAH
+
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE     6
+
+  00AA          +1   322     SSC_CONL_P DATA 0AAH
+
+  00A9          +1   323     SSC_PISEL DATA 0A9H
+
+  00AD          +1   324     SSC_RBL DATA 0ADH
+
+  00AC          +1   325     SSC_TBL DATA 0ACH
+
+  008F          +1   326     SYSCON0 DATA 08FH
+
+  00C3          +1   327     T21_RC2H DATA 0C3H
+
+  00C2          +1   328     T21_RC2L DATA 0C2H
+
+  00C0          +1   329     T21_T2CON DATA 0C0H
+
+  00C5          +1   330     T21_T2H DATA 0C5H
+
+  00C4          +1   331     T21_T2L DATA 0C4H
+
+  00C1          +1   332     T21_T2MOD DATA 0C1H
+
+  00C3          +1   333     T2_RC2H DATA 0C3H
+
+  00C2          +1   334     T2_RC2L DATA 0C2H
+
+  00C0          +1   335     T2_T2CON DATA 0C0H
+
+  00C5          +1   336     T2_T2H DATA 0C5H
+
+  00C4          +1   337     T2_T2L DATA 0C4H
+
+  00C1          +1   338     T2_T2MOD DATA 0C1H
+
+  0088          +1   339     TCON DATA 088H
+
+  008C          +1   340     TH0 DATA 08CH
+
+  008D          +1   341     TH1 DATA 08DH
+
+  008A          +1   342     TL0 DATA 08AH
+
+  008B          +1   343     TL1 DATA 08BH
+
+  0089          +1   344     TMOD DATA 089H
+
+  00CA          +1   345     UART1_BCON DATA 0CAH
+
+  00CB          +1   346     UART1_BG DATA 0CBH
+
+  00CC          +1   347     UART1_FDCON DATA 0CCH
+
+  00CE          +1   348     UART1_FDRES DATA 0CEH
+
+  00CD          +1   349     UART1_FDSTEP DATA 0CDH
+
+  00C9          +1   350     UART1_SBUF DATA 0C9H
+
+  00C8          +1   351     UART1_SCON DATA 0C8H
+
+  00BB          +1   352     WDTCON DATA 0BBH
+
+  00BF          +1   353     WDTH DATA 0BFH
+
+  00BE          +1   354     WDTL DATA 0BEH
+
+  00BC          +1   355     WDTREL DATA 0BCH
+
+  00BD          +1   356     WDTWINB DATA 0BDH
+
+  00B3          +1   357     XADDRH DATA 0B3H
+
+  00A0          +1   358     CD_BSY BIT 0A0H.0
+
+  00A4          +1   359     DMAP BIT 0A0H.4
+
+  00A2          +1   360     EOC BIT 0A0H.2
+
+  00A1          +1   361     ERROR BIT 0A0H.1
+
+  00A3          +1   362     INT_EN BIT 0A0H.3
+
+  00A5          +1   363     KEEPX BIT 0A0H.5
+
+  00A6          +1   364     KEEPY BIT 0A0H.6
+
+  00A7          +1   365     KEEPZ BIT 0A0H.7
+
+  00AF          +1   366     EA BIT 0A8H.7
+
+  00AC          +1   367     ES BIT 0A8H.4
+
+  00A9          +1   368     ET0 BIT 0A8H.1
+
+  00AB          +1   369     ET1 BIT 0A8H.3
+
+  00AD          +1   370     ET2 BIT 0A8H.5
+
+  00A8          +1   371     EX0 BIT 0A8H.0
+
+  00AA          +1   372     EX1 BIT 0A8H.2
+
+  00E8          +1   373     EADC BIT 0E8H.0
+
+  00EC          +1   374     ECCIP0 BIT 0E8H.4
+
+  00ED          +1   375     ECCIP1 BIT 0E8H.5
+
+  00EE          +1   376     ECCIP2 BIT 0E8H.6
+
+  00EF          +1   377     ECCIP3 BIT 0E8H.7
+
+  00E9          +1   378     ESSC BIT 0E8H.1
+
+  00EA          +1   379     EX2 BIT 0E8H.2
+
+  00EB          +1   380     EXM BIT 0E8H.3
+
+  00F8          +1   381     PADC BIT 0F8H.0
+
+  00FC          +1   382     PCCIP0 BIT 0F8H.4
+
+  00FD          +1   383     PCCIP1 BIT 0F8H.5
+
+  00FE          +1   384     PCCIP2 BIT 0F8H.6
+
+  00FF          +1   385     PCCIP3 BIT 0F8H.7
+
+  00F9          +1   386     PSSC BIT 0F8H.1
+
+  00FA          +1   387     PX2 BIT 0F8H.2
+
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE     7
+
+  00FB          +1   388     PXM BIT 0F8H.3
+
+  00BC          +1   389     PS BIT 0B8H.4
+
+  00B9          +1   390     PT0 BIT 0B8H.1
+
+  00BB          +1   391     PT1 BIT 0B8H.3
+
+  00BD          +1   392     PT2 BIT 0B8H.5
+
+  00B8          +1   393     PX0 BIT 0B8H.0
+
+  00BA          +1   394     PX1 BIT 0B8H.2
+
+  00B1          +1   395     IERR BIT 0B0H.1
+
+  00B0          +1   396     IRDY BIT 0B0H.0
+
+  00B2          +1   397     MDU_BSY BIT 0B0H.2
+
+  00D6          +1   398     AC BIT 0D0H.6
+
+  00D7          +1   399     CY BIT 0D0H.7
+
+  00D5          +1   400     F0 BIT 0D0H.5
+
+  00D1          +1   401     F1 BIT 0D0H.1
+
+  00D2          +1   402     OV BIT 0D0H.2
+
+  00D0          +1   403     P BIT 0D0H.0
+
+  00D3          +1   404     RS0 BIT 0D0H.3
+
+  00D4          +1   405     RS1 BIT 0D0H.4
+
+  009A          +1   406     RB8 BIT 098H.2
+
+  009C          +1   407     REN BIT 098H.4
+
+  0098          +1   408     RI BIT 098H.0
+
+  009F          +1   409     SM0 BIT 098H.7
+
+  009E          +1   410     SM1 BIT 098H.6
+
+  009D          +1   411     SM2 BIT 098H.5
+
+  009B          +1   412     TB8 BIT 098H.3
+
+  0099          +1   413     TI BIT 098H.1
+
+  00C1          +1   414     C_T2 BIT 0C0H.1
+
+  00C0          +1   415     CP_RL2 BIT 0C0H.0
+
+  00C3          +1   416     EXEN2 BIT 0C0H.3
+
+  00C6          +1   417     EXF2 BIT 0C0H.6
+
+  00C7          +1   418     TF2 BIT 0C0H.7
+
+  00C2          +1   419     TR2 BIT 0C0H.2
+
+  0089          +1   420     IE0 BIT 088H.1
+
+  008B          +1   421     IE1 BIT 088H.3
+
+  0088          +1   422     IT0 BIT 088H.0
+
+  008A          +1   423     IT1 BIT 088H.2
+
+  008D          +1   424     TF0 BIT 088H.5
+
+  008F          +1   425     TF1 BIT 088H.7
+
+  008C          +1   426     TR0 BIT 088H.4
+
+  008E          +1   427     TR1 BIT 088H.6
+
+  00CA          +1   428     RB8_1 BIT 0C8H.2
+
+  00CC          +1   429     REN_1 BIT 0C8H.4
+
+  00C8          +1   430     RI_1 BIT 0C8H.0
+
+  00CF          +1   431     SM0_1 BIT 0C8H.7
+
+  00CE          +1   432     SM1_1 BIT 0C8H.6
+
+  00CD          +1   433     SM2_1 BIT 0C8H.5
+
+  00CB          +1   434     TB8_1 BIT 0C8H.3
+
+  00C9          +1   435     TI_1 BIT 0C8H.1
+
+  00CA          +1   436     ADC_RESR0LH DATA 0CAH
+
+  00CC          +1   437     ADC_RESR1LH DATA 0CCH
+
+  00CE          +1   438     ADC_RESR2LH DATA 0CEH
+
+  00D2          +1   439     ADC_RESR3LH DATA 0D2H
+
+  00CA          +1   440     ADC_RESRA0LH DATA 0CAH
+
+  00CC          +1   441     ADC_RESRA1LH DATA 0CCH
+
+  00CE          +1   442     ADC_RESRA2LH DATA 0CEH
+
+  00D2          +1   443     ADC_RESRA3LH DATA 0D2H
+
+  00D9          +1   444     CAN_ADLH DATA 0D9H
+
+  00DB          +1   445     CAN_DATA01 DATA 0DBH
+
+  00DD          +1   446     CAN_DATA23 DATA 0DDH
+
+  00FA          +1   447     CCU6_CC60RLH DATA 0FAH
+
+  00FA          +1   448     CCU6_CC60SRLH DATA 0FAH
+
+  00FC          +1   449     CCU6_CC61RLH DATA 0FCH
+
+  00FC          +1   450     CCU6_CC61SRLH DATA 0FCH
+
+  00FE          +1   451     CCU6_CC62RLH DATA 0FEH
+
+  00FE          +1   452     CCU6_CC62SRLH DATA 0FEH
+
+  009A          +1   453     CCU6_CC63RLH DATA 09AH
+
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE     8
+
+  009A          +1   454     CCU6_CC63SRLH DATA 09AH
+
+  00FA          +1   455     CCU6_T12LH DATA 0FAH
+
+  009C          +1   456     CCU6_T12PRLH DATA 09CH
+
+  00FC          +1   457     CCU6_T13LH DATA 0FCH
+
+  009E          +1   458     CCU6_T13PRLH DATA 09EH
+
+  00C2          +1   459     T21_RC2LH DATA 0C2H
+
+  00C4          +1   460     T21_T2LH DATA 0C4H
+
+  00C2          +1   461     T2_RC2LH DATA 0C2H
+
+  00C4          +1   462     T2_T2LH DATA 0C4H
+
+                     463     
+
+0000 801E            464             jmp main                                                                           
+                                                                          ;cycles 4*1=4
+
+                     465     ;This is my CompulsoryTaskProgramm
+
+                     466     ;-----------------------------
+
+                     467     ;Definition of variable
+
+                     468     ;-----------------------------
+
+  1900               469     meml EQU 1900h
+
+  00FA               470     X EQU 250 ;250    --> r1
+
+  0032               471     Y EQU 50 ;50      --> r0
+
+                     472     ;-----------------------------
+
+                     473     ;Main Program
+
+                     474     ;-----------------------------
+
+                     475     
+
+                     476     
+
+0020                 477     ORG 20h
+
+                     478     
+
+0020                 479             main:
+
+0020 79FA            480                     mov r1,#X                                                                  
+                                                                                  
+
+                     481                     
+
+0022                 482             loop:
+
+0022 12002B          483                     lcall U1
+
+0025 D9FB            484                     djnz r1,loop
+
+0027 12002A          485                     lcall ende
+
+                     486                     
+
+002A                 487             ende:
+
+002A 00              488                     nop
+
+                     489     
+
+                     490     ;--------- U1 -----------------
+
+002B                 491             U1: 
+
+002B 7832            492                     mov r0, #Y                                                                 
+                                                                                  ;cycles 6*250=1500
+
+                     493                     
+
+002D                 494             rep:    
+
+002D A3              495                     inc dptr                                                                   
+                                                                          ;cycles 4*50*250=50000
+
+002E D8FD            496                     djnz r0 ,rep                                                               
+                                                                  ;cycles 8*50*250=100000
+
+0030 22              497                     ret
+
+                     498     ;-------------------------------        
+
+                     499             
+
+                     500     END                                                                                        
+                                                                          ;allCycles=25351
+
+                                                                                                                        
+                                                                                  ;total cycles = 26742
+
+                                                                                                                        
+                                                                                  ;clock is at 24MHz
+
+                                                                                                                        
+                                                                                  ;one clock takes 1/24Mhz = 4.1*10^-6 secs
+
+                                                                                                                        
+                                                                                  ;hole program to finish 25351cycles *4
+                             .1*10^-6secs = 0.0010562916666667secs = 1.0562916666667ms
+
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE     9
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+AC . . . . . . . .  B ADDR   00D0H.6 A   
+ACC. . . . . . . .  D ADDR   00E0H   A   
+ADC_CHCTR0 . . . .  D ADDR   00CAH   A   
+ADC_CHCTR1 . . . .  D ADDR   00CBH   A   
+ADC_CHCTR2 . . . .  D ADDR   00CCH   A   
+ADC_CHCTR3 . . . .  D ADDR   00CDH   A   
+ADC_CHCTR4 . . . .  D ADDR   00CEH   A   
+ADC_CHCTR5 . . . .  D ADDR   00CFH   A   
+ADC_CHCTR6 . . . .  D ADDR   00D2H   A   
+ADC_CHCTR7 . . . .  D ADDR   00D3H   A   
+ADC_CHINCR . . . .  D ADDR   00CBH   A   
+ADC_CHINFR . . . .  D ADDR   00CAH   A   
+ADC_CHINPR . . . .  D ADDR   00CDH   A   
+ADC_CHINSR . . . .  D ADDR   00CCH   A   
+ADC_CRCR1. . . . .  D ADDR   00CAH   A   
+ADC_CRMR1. . . . .  D ADDR   00CCH   A   
+ADC_CRPR1. . . . .  D ADDR   00CBH   A   
+ADC_ETRCR. . . . .  D ADDR   00CFH   A   
+ADC_EVINCR . . . .  D ADDR   00CFH   A   
+ADC_EVINFR . . . .  D ADDR   00CEH   A   
+ADC_EVINPR . . . .  D ADDR   00D3H   A   
+ADC_EVINSR . . . .  D ADDR   00D2H   A   
+ADC_GLOBCTR. . . .  D ADDR   00CAH   A   
+ADC_GLOBSTR. . . .  D ADDR   00CBH   A   
+ADC_INPCR0 . . . .  D ADDR   00CEH   A   
+ADC_LCBR . . . . .  D ADDR   00CDH   A   
+ADC_PAGE . . . . .  D ADDR   00D1H   A   
+ADC_PRAR . . . . .  D ADDR   00CCH   A   
+ADC_Q0R0 . . . . .  D ADDR   00CFH   A   
+ADC_QBUR0. . . . .  D ADDR   00D2H   A   
+ADC_QINR0. . . . .  D ADDR   00D2H   A   
+ADC_QMR0 . . . . .  D ADDR   00CDH   A   
+ADC_QSR0 . . . . .  D ADDR   00CEH   A   
+ADC_RCR0 . . . . .  D ADDR   00CAH   A   
+ADC_RCR1 . . . . .  D ADDR   00CBH   A   
+ADC_RCR2 . . . . .  D ADDR   00CCH   A   
+ADC_RCR3 . . . . .  D ADDR   00CDH   A   
+ADC_RESR0H . . . .  D ADDR   00CBH   A   
+ADC_RESR0L . . . .  D ADDR   00CAH   A   
+ADC_RESR0LH. . . .  D ADDR   00CAH   A   
+ADC_RESR1H . . . .  D ADDR   00CDH   A   
+ADC_RESR1L . . . .  D ADDR   00CCH   A   
+ADC_RESR1LH. . . .  D ADDR   00CCH   A   
+ADC_RESR2H . . . .  D ADDR   00CFH   A   
+ADC_RESR2L . . . .  D ADDR   00CEH   A   
+ADC_RESR2LH. . . .  D ADDR   00CEH   A   
+ADC_RESR3H . . . .  D ADDR   00D3H   A   
+ADC_RESR3L . . . .  D ADDR   00D2H   A   
+ADC_RESR3LH. . . .  D ADDR   00D2H   A   
+ADC_RESRA0H. . . .  D ADDR   00CBH   A   
+ADC_RESRA0L. . . .  D ADDR   00CAH   A   
+ADC_RESRA0LH . . .  D ADDR   00CAH   A   
+ADC_RESRA1H. . . .  D ADDR   00CDH   A   
+ADC_RESRA1L. . . .  D ADDR   00CCH   A   
+ADC_RESRA1LH . . .  D ADDR   00CCH   A   
+ADC_RESRA2H. . . .  D ADDR   00CFH   A   
+ADC_RESRA2L. . . .  D ADDR   00CEH   A   
+ADC_RESRA2LH . . .  D ADDR   00CEH   A   
+ADC_RESRA3H. . . .  D ADDR   00D3H   A   
+ADC_RESRA3L. . . .  D ADDR   00D2H   A   
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE    10
+
+ADC_RESRA3LH . . .  D ADDR   00D2H   A   
+ADC_VFCR . . . . .  D ADDR   00CEH   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+BCON . . . . . . .  D ADDR   00BDH   A   
+BG . . . . . . . .  D ADDR   00BEH   A   
+CAN_ADCON. . . . .  D ADDR   00D8H   A   
+CAN_ADH. . . . . .  D ADDR   00DAH   A   
+CAN_ADL. . . . . .  D ADDR   00D9H   A   
+CAN_ADLH . . . . .  D ADDR   00D9H   A   
+CAN_DATA0. . . . .  D ADDR   00DBH   A   
+CAN_DATA01 . . . .  D ADDR   00DBH   A   
+CAN_DATA1. . . . .  D ADDR   00DCH   A   
+CAN_DATA2. . . . .  D ADDR   00DDH   A   
+CAN_DATA23 . . . .  D ADDR   00DDH   A   
+CAN_DATA3. . . . .  D ADDR   00DEH   A   
+CCU6_CC60RH. . . .  D ADDR   00FBH   A   
+CCU6_CC60RL. . . .  D ADDR   00FAH   A   
+CCU6_CC60RLH . . .  D ADDR   00FAH   A   
+CCU6_CC60SRH . . .  D ADDR   00FBH   A   
+CCU6_CC60SRL . . .  D ADDR   00FAH   A   
+CCU6_CC60SRLH. . .  D ADDR   00FAH   A   
+CCU6_CC61RH. . . .  D ADDR   00FDH   A   
+CCU6_CC61RL. . . .  D ADDR   00FCH   A   
+CCU6_CC61RLH . . .  D ADDR   00FCH   A   
+CCU6_CC61SRH . . .  D ADDR   00FDH   A   
+CCU6_CC61SRL . . .  D ADDR   00FCH   A   
+CCU6_CC61SRLH. . .  D ADDR   00FCH   A   
+CCU6_CC62RH. . . .  D ADDR   00FFH   A   
+CCU6_CC62RL. . . .  D ADDR   00FEH   A   
+CCU6_CC62RLH . . .  D ADDR   00FEH   A   
+CCU6_CC62SRH . . .  D ADDR   00FFH   A   
+CCU6_CC62SRL . . .  D ADDR   00FEH   A   
+CCU6_CC62SRLH. . .  D ADDR   00FEH   A   
+CCU6_CC63RH. . . .  D ADDR   009BH   A   
+CCU6_CC63RL. . . .  D ADDR   009AH   A   
+CCU6_CC63RLH . . .  D ADDR   009AH   A   
+CCU6_CC63SRH . . .  D ADDR   009BH   A   
+CCU6_CC63SRL . . .  D ADDR   009AH   A   
+CCU6_CC63SRLH. . .  D ADDR   009AH   A   
+CCU6_CMPMODIFH . .  D ADDR   00A7H   A   
+CCU6_CMPMODIFL . .  D ADDR   00A6H   A   
+CCU6_CMPSTATH. . .  D ADDR   00FFH   A   
+CCU6_CMPSTATL. . .  D ADDR   00FEH   A   
+CCU6_IENH. . . . .  D ADDR   009DH   A   
+CCU6_IENL. . . . .  D ADDR   009CH   A   
+CCU6_INPH. . . . .  D ADDR   009FH   A   
+CCU6_INPL. . . . .  D ADDR   009EH   A   
+CCU6_ISH . . . . .  D ADDR   009DH   A   
+CCU6_ISL . . . . .  D ADDR   009CH   A   
+CCU6_ISRH. . . . .  D ADDR   00A5H   A   
+CCU6_ISRL. . . . .  D ADDR   00A4H   A   
+CCU6_ISSH. . . . .  D ADDR   00A5H   A   
+CCU6_ISSL. . . . .  D ADDR   00A4H   A   
+CCU6_MCMCTR. . . .  D ADDR   00A7H   A   
+CCU6_MCMOUTH . . .  D ADDR   009BH   A   
+CCU6_MCMOUTL . . .  D ADDR   009AH   A   
+CCU6_MCMOUTSH. . .  D ADDR   009FH   A   
+CCU6_MCMOUTSL. . .  D ADDR   009EH   A   
+CCU6_MODCTRH . . .  D ADDR   00FDH   A   
+CCU6_MODCTRL . . .  D ADDR   00FCH   A   
+CCU6_PAGE. . . . .  D ADDR   00A3H   A   
+CCU6_PISEL0H . . .  D ADDR   009FH   A   
+CCU6_PISEL0L . . .  D ADDR   009EH   A   
+CCU6_PISEL2. . . .  D ADDR   00A4H   A   
+CCU6_PSLR. . . . .  D ADDR   00A6H   A   
+CCU6_T12DTCH . . .  D ADDR   00A5H   A   
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE    11
+
+CCU6_T12DTCL . . .  D ADDR   00A4H   A   
+CCU6_T12H. . . . .  D ADDR   00FBH   A   
+CCU6_T12L. . . . .  D ADDR   00FAH   A   
+CCU6_T12LH . . . .  D ADDR   00FAH   A   
+CCU6_T12MSELH. . .  D ADDR   009BH   A   
+CCU6_T12MSELL. . .  D ADDR   009AH   A   
+CCU6_T12PRH. . . .  D ADDR   009DH   A   
+CCU6_T12PRL. . . .  D ADDR   009CH   A   
+CCU6_T12PRLH . . .  D ADDR   009CH   A   
+CCU6_T13H. . . . .  D ADDR   00FDH   A   
+CCU6_T13L. . . . .  D ADDR   00FCH   A   
+CCU6_T13LH . . . .  D ADDR   00FCH   A   
+CCU6_T13PRH. . . .  D ADDR   009FH   A   
+CCU6_T13PRL. . . .  D ADDR   009EH   A   
+CCU6_T13PRLH . . .  D ADDR   009EH   A   
+CCU6_TCTR0H. . . .  D ADDR   00A7H   A   
+CCU6_TCTR0L. . . .  D ADDR   00A6H   A   
+CCU6_TCTR2H. . . .  D ADDR   00FBH   A   
+CCU6_TCTR2L. . . .  D ADDR   00FAH   A   
+CCU6_TCTR4H. . . .  D ADDR   009DH   A   
+CCU6_TCTR4L. . . .  D ADDR   009CH   A   
+CCU6_TRPCTRH . . .  D ADDR   00FFH   A   
+CCU6_TRPCTRL . . .  D ADDR   00FEH   A   
+CD_BSY . . . . . .  B ADDR   00A0H.0 A   
+CD_CON . . . . . .  D ADDR   00A1H   A   
+CD_CORDXH. . . . .  D ADDR   009BH   A   
+CD_CORDXL. . . . .  D ADDR   009AH   A   
+CD_CORDYH. . . . .  D ADDR   009DH   A   
+CD_CORDYL. . . . .  D ADDR   009CH   A   
+CD_CORDZH. . . . .  D ADDR   009FH   A   
+CD_CORDZL. . . . .  D ADDR   009EH   A   
+CD_STATC . . . . .  D ADDR   00A0H   A   
+CMCON. . . . . . .  D ADDR   00BAH   A   
+COCON. . . . . . .  D ADDR   00BEH   A   
+CP_RL2 . . . . . .  B ADDR   00C0H.0 A   
+CY . . . . . . . .  B ADDR   00D0H.7 A   
+C_T2 . . . . . . .  B ADDR   00C0H.1 A   
+DMAP . . . . . . .  B ADDR   00A0H.4 A   
+DPH. . . . . . . .  D ADDR   0083H   A   
+DPL. . . . . . . .  D ADDR   0082H   A   
+EA . . . . . . . .  B ADDR   00A8H.7 A   
+EADC . . . . . . .  B ADDR   00E8H.0 A   
+ECCIP0 . . . . . .  B ADDR   00E8H.4 A   
+ECCIP1 . . . . . .  B ADDR   00E8H.5 A   
+ECCIP2 . . . . . .  B ADDR   00E8H.6 A   
+ECCIP3 . . . . . .  B ADDR   00E8H.7 A   
+ENDE . . . . . . .  C ADDR   002AH   A   
+EO . . . . . . . .  D ADDR   00A2H   A   
+EOC. . . . . . . .  B ADDR   00A0H.2 A   
+ERROR. . . . . . .  B ADDR   00A0H.1 A   
+ES . . . . . . . .  B ADDR   00A8H.4 A   
+ESSC . . . . . . .  B ADDR   00E8H.1 A   
+ET0. . . . . . . .  B ADDR   00A8H.1 A   
+ET1. . . . . . . .  B ADDR   00A8H.3 A   
+ET2. . . . . . . .  B ADDR   00A8H.5 A   
+EX0. . . . . . . .  B ADDR   00A8H.0 A   
+EX1. . . . . . . .  B ADDR   00A8H.2 A   
+EX2. . . . . . . .  B ADDR   00E8H.2 A   
+EXEN2. . . . . . .  B ADDR   00C0H.3 A   
+EXF2 . . . . . . .  B ADDR   00C0H.6 A   
+EXICON0. . . . . .  D ADDR   00B7H   A   
+EXICON1. . . . . .  D ADDR   00BAH   A   
+EXM. . . . . . . .  B ADDR   00E8H.3 A   
+F0 . . . . . . . .  B ADDR   00D0H.5 A   
+F1 . . . . . . . .  B ADDR   00D0H.1 A   
+FDCON. . . . . . .  D ADDR   00E9H   A   
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE    12
+
+FDRES. . . . . . .  D ADDR   00EBH   A   
+FDSTEP . . . . . .  D ADDR   00EAH   A   
+FEAH . . . . . . .  D ADDR   00BDH   A   
+FEAL . . . . . . .  D ADDR   00BCH   A   
+HSKA_INCLUDE_. . .  N NUMB   -----       
+HWBPDR . . . . . .  D ADDR   00F7H   A   
+HWBPSR . . . . . .  D ADDR   00F6H   A   
+ID . . . . . . . .  D ADDR   00B3H   A   
+IE0. . . . . . . .  B ADDR   0088H.1 A   
+IE1. . . . . . . .  B ADDR   0088H.3 A   
+IEN0 . . . . . . .  D ADDR   00A8H   A   
+IEN1 . . . . . . .  D ADDR   00E8H   A   
+IERR . . . . . . .  B ADDR   00B0H.1 A   
+INT_EN . . . . . .  B ADDR   00A0H.3 A   
+IP . . . . . . . .  D ADDR   00B8H   A   
+IP1. . . . . . . .  D ADDR   00F8H   A   
+IPH. . . . . . . .  D ADDR   00B9H   A   
+IPH1 . . . . . . .  D ADDR   00F9H   A   
+IRCON0 . . . . . .  D ADDR   00B4H   A   
+IRCON1 . . . . . .  D ADDR   00B5H   A   
+IRCON2 . . . . . .  D ADDR   00B6H   A   
+IRCON3 . . . . . .  D ADDR   00B4H   A   
+IRCON4 . . . . . .  D ADDR   00B5H   A   
+IRDY . . . . . . .  B ADDR   00B0H.0 A   
+IT0. . . . . . . .  B ADDR   0088H.0 A   
+IT1. . . . . . . .  B ADDR   0088H.2 A   
+KEEPX. . . . . . .  B ADDR   00A0H.5 A   
+KEEPY. . . . . . .  B ADDR   00A0H.6 A   
+KEEPZ. . . . . . .  B ADDR   00A0H.7 A   
+LOOP . . . . . . .  C ADDR   0022H   A   
+MAIN . . . . . . .  C ADDR   0020H   A   
+MDU_BSY. . . . . .  B ADDR   00B0H.2 A   
+MDU_MD0. . . . . .  D ADDR   00B2H   A   
+MDU_MD1. . . . . .  D ADDR   00B3H   A   
+MDU_MD2. . . . . .  D ADDR   00B4H   A   
+MDU_MD3. . . . . .  D ADDR   00B5H   A   
+MDU_MD4. . . . . .  D ADDR   00B6H   A   
+MDU_MD5. . . . . .  D ADDR   00B7H   A   
+MDU_MDUCON . . . .  D ADDR   00B1H   A   
+MDU_MDUSTAT. . . .  D ADDR   00B0H   A   
+MDU_MR0. . . . . .  D ADDR   00B2H   A   
+MDU_MR1. . . . . .  D ADDR   00B3H   A   
+MDU_MR2. . . . . .  D ADDR   00B4H   A   
+MDU_MR3. . . . . .  D ADDR   00B5H   A   
+MDU_MR4. . . . . .  D ADDR   00B6H   A   
+MDU_MR5. . . . . .  D ADDR   00B7H   A   
+MEML . . . . . . .  N NUMB   1900H   A   
+MISC_CON . . . . .  D ADDR   00E9H   A   
+MMBPCR . . . . . .  D ADDR   00F3H   A   
+MMCR . . . . . . .  D ADDR   00F1H   A   
+MMCR2. . . . . . .  D ADDR   00E9H   A   
+MMDR . . . . . . .  D ADDR   00F5H   A   
+MMICR. . . . . . .  D ADDR   00F4H   A   
+MMSR . . . . . . .  D ADDR   00F2H   A   
+MMWR1. . . . . . .  D ADDR   00EBH   A   
+MMWR2. . . . . . .  D ADDR   00ECH   A   
+MODPISEL . . . . .  D ADDR   00B3H   A   
+MODPISEL1. . . . .  D ADDR   00B7H   A   
+MODPISEL2. . . . .  D ADDR   00BAH   A   
+MODSUSP. . . . . .  D ADDR   00BDH   A   
+NMICON . . . . . .  D ADDR   00BBH   A   
+NMISR. . . . . . .  D ADDR   00BCH   A   
+OSC_CON. . . . . .  D ADDR   00B6H   A   
+OV . . . . . . . .  B ADDR   00D0H.2 A   
+P. . . . . . . . .  B ADDR   00D0H.0 A   
+P0_0 . . . . . . .  B ADDR   0080H.0 A   
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE    13
+
+P0_1 . . . . . . .  B ADDR   0080H.1 A   
+P0_2 . . . . . . .  B ADDR   0080H.2 A   
+P0_3 . . . . . . .  B ADDR   0080H.3 A   
+P0_4 . . . . . . .  B ADDR   0080H.4 A   
+P0_5 . . . . . . .  B ADDR   0080H.5 A   
+P0_6 . . . . . . .  B ADDR   0080H.6 A   
+P0_7 . . . . . . .  B ADDR   0080H.7 A   
+P0_ALTSEL0 . . . .  D ADDR   0080H   A   
+P0_ALTSEL1 . . . .  D ADDR   0086H   A   
+P0_DATA. . . . . .  D ADDR   0080H   A   
+P0_DIR . . . . . .  D ADDR   0086H   A   
+P0_OD. . . . . . .  D ADDR   0080H   A   
+P0_PUDEN . . . . .  D ADDR   0086H   A   
+P0_PUDSEL. . . . .  D ADDR   0080H   A   
+P1_0 . . . . . . .  B ADDR   0090H.0 A   
+P1_1 . . . . . . .  B ADDR   0090H.1 A   
+P1_2 . . . . . . .  B ADDR   0090H.2 A   
+P1_3 . . . . . . .  B ADDR   0090H.3 A   
+P1_4 . . . . . . .  B ADDR   0090H.4 A   
+P1_5 . . . . . . .  B ADDR   0090H.5 A   
+P1_6 . . . . . . .  B ADDR   0090H.6 A   
+P1_7 . . . . . . .  B ADDR   0090H.7 A   
+P1_ALTSEL0 . . . .  D ADDR   0090H   A   
+P1_ALTSEL1 . . . .  D ADDR   0091H   A   
+P1_DATA. . . . . .  D ADDR   0090H   A   
+P1_DIR . . . . . .  D ADDR   0091H   A   
+P1_OD. . . . . . .  D ADDR   0090H   A   
+P1_PUDEN . . . . .  D ADDR   0091H   A   
+P1_PUDSEL. . . . .  D ADDR   0090H   A   
+P2_0 . . . . . . .  B ADDR   00A0H.0 A   
+P2_1 . . . . . . .  B ADDR   00A0H.1 A   
+P2_2 . . . . . . .  B ADDR   00A0H.2 A   
+P2_3 . . . . . . .  B ADDR   00A0H.3 A   
+P2_4 . . . . . . .  B ADDR   00A0H.4 A   
+P2_5 . . . . . . .  B ADDR   00A0H.5 A   
+P2_6 . . . . . . .  B ADDR   00A0H.6 A   
+P2_7 . . . . . . .  B ADDR   00A0H.7 A   
+P2_DATA. . . . . .  D ADDR   00A0H   A   
+P2_DIR . . . . . .  D ADDR   00A1H   A   
+P2_PUDEN . . . . .  D ADDR   00A1H   A   
+P2_PUDSEL. . . . .  D ADDR   00A0H   A   
+P3_0 . . . . . . .  B ADDR   00B0H.0 A   
+P3_1 . . . . . . .  B ADDR   00B0H.1 A   
+P3_2 . . . . . . .  B ADDR   00B0H.2 A   
+P3_3 . . . . . . .  B ADDR   00B0H.3 A   
+P3_4 . . . . . . .  B ADDR   00B0H.4 A   
+P3_5 . . . . . . .  B ADDR   00B0H.5 A   
+P3_6 . . . . . . .  B ADDR   00B0H.6 A   
+P3_7 . . . . . . .  B ADDR   00B0H.7 A   
+P3_ALTSEL0 . . . .  D ADDR   00B0H   A   
+P3_ALTSEL1 . . . .  D ADDR   00B1H   A   
+P3_DATA. . . . . .  D ADDR   00B0H   A   
+P3_DIR . . . . . .  D ADDR   00B1H   A   
+P3_OD. . . . . . .  D ADDR   00B0H   A   
+P3_PUDEN . . . . .  D ADDR   00B1H   A   
+P3_PUDSEL. . . . .  D ADDR   00B0H   A   
+P4_0 . . . . . . .  B ADDR   00C8H.0 A   
+P4_1 . . . . . . .  B ADDR   00C8H.1 A   
+P4_2 . . . . . . .  B ADDR   00C8H.2 A   
+P4_3 . . . . . . .  B ADDR   00C8H.3 A   
+P4_4 . . . . . . .  B ADDR   00C8H.4 A   
+P4_5 . . . . . . .  B ADDR   00C8H.5 A   
+P4_6 . . . . . . .  B ADDR   00C8H.6 A   
+P4_7 . . . . . . .  B ADDR   00C8H.7 A   
+P4_ALTSEL0 . . . .  D ADDR   00C8H   A   
+P4_ALTSEL1 . . . .  D ADDR   00C9H   A   
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE    14
+
+P4_DATA. . . . . .  D ADDR   00C8H   A   
+P4_DIR . . . . . .  D ADDR   00C9H   A   
+P4_OD. . . . . . .  D ADDR   00C8H   A   
+P4_PUDEN . . . . .  D ADDR   00C9H   A   
+P4_PUDSEL. . . . .  D ADDR   00C8H   A   
+P5_ALTSEL0 . . . .  D ADDR   0092H   A   
+P5_ALTSEL1 . . . .  D ADDR   0093H   A   
+P5_DATA. . . . . .  D ADDR   0092H   A   
+P5_DIR . . . . . .  D ADDR   0093H   A   
+P5_OD. . . . . . .  D ADDR   0092H   A   
+P5_PUDEN . . . . .  D ADDR   0093H   A   
+P5_PUDSEL. . . . .  D ADDR   0092H   A   
+PADC . . . . . . .  B ADDR   00F8H.0 A   
+PASSWD . . . . . .  D ADDR   00BBH   A   
+PCCIP0 . . . . . .  B ADDR   00F8H.4 A   
+PCCIP1 . . . . . .  B ADDR   00F8H.5 A   
+PCCIP2 . . . . . .  B ADDR   00F8H.6 A   
+PCCIP3 . . . . . .  B ADDR   00F8H.7 A   
+PCON . . . . . . .  D ADDR   0087H   A   
+PLL_CON. . . . . .  D ADDR   00B7H   A   
+PMCON0 . . . . . .  D ADDR   00B4H   A   
+PMCON1 . . . . . .  D ADDR   00B5H   A   
+PMCON2 . . . . . .  D ADDR   00BBH   A   
+PORT_PAGE. . . . .  D ADDR   00B2H   A   
+PS . . . . . . . .  B ADDR   00B8H.4 A   
+PSSC . . . . . . .  B ADDR   00F8H.1 A   
+PSW. . . . . . . .  D ADDR   00D0H   A   
+PT0. . . . . . . .  B ADDR   00B8H.1 A   
+PT1. . . . . . . .  B ADDR   00B8H.3 A   
+PT2. . . . . . . .  B ADDR   00B8H.5 A   
+PX0. . . . . . . .  B ADDR   00B8H.0 A   
+PX1. . . . . . . .  B ADDR   00B8H.2 A   
+PX2. . . . . . . .  B ADDR   00F8H.2 A   
+PXM. . . . . . . .  B ADDR   00F8H.3 A   
+RB8. . . . . . . .  B ADDR   0098H.2 A   
+RB8_1. . . . . . .  B ADDR   00C8H.2 A   
+REN. . . . . . . .  B ADDR   0098H.4 A   
+REN_1. . . . . . .  B ADDR   00C8H.4 A   
+REP. . . . . . . .  C ADDR   002DH   A   
+RI . . . . . . . .  B ADDR   0098H.0 A   
+RI_1 . . . . . . .  B ADDR   00C8H.0 A   
+RS0. . . . . . . .  B ADDR   00D0H.3 A   
+RS1. . . . . . . .  B ADDR   00D0H.4 A   
+SBUF . . . . . . .  D ADDR   0099H   A   
+SCON . . . . . . .  D ADDR   0098H   A   
+SCU_PAGE . . . . .  D ADDR   00BFH   A   
+SM0. . . . . . . .  B ADDR   0098H.7 A   
+SM0_1. . . . . . .  B ADDR   00C8H.7 A   
+SM1. . . . . . . .  B ADDR   0098H.6 A   
+SM1_1. . . . . . .  B ADDR   00C8H.6 A   
+SM2. . . . . . . .  B ADDR   0098H.5 A   
+SM2_1. . . . . . .  B ADDR   00C8H.5 A   
+SP . . . . . . . .  D ADDR   0081H   A   
+SSC_BRH. . . . . .  D ADDR   00AFH   A   
+SSC_BRL. . . . . .  D ADDR   00AEH   A   
+SSC_CONH_O . . . .  D ADDR   00ABH   A   
+SSC_CONH_P . . . .  D ADDR   00ABH   A   
+SSC_CONL_O . . . .  D ADDR   00AAH   A   
+SSC_CONL_P . . . .  D ADDR   00AAH   A   
+SSC_PISEL. . . . .  D ADDR   00A9H   A   
+SSC_RBL. . . . . .  D ADDR   00ADH   A   
+SSC_TBL. . . . . .  D ADDR   00ACH   A   
+SYSCON0. . . . . .  D ADDR   008FH   A   
+T21_RC2H . . . . .  D ADDR   00C3H   A   
+T21_RC2L . . . . .  D ADDR   00C2H   A   
+T21_RC2LH. . . . .  D ADDR   00C2H   A   
+A51 MACRO ASSEMBLER  COMPULSORYTASK_1                                                     11/28/2017 07:18:20 PAGE    15
+
+T21_T2CON. . . . .  D ADDR   00C0H   A   
+T21_T2H. . . . . .  D ADDR   00C5H   A   
+T21_T2L. . . . . .  D ADDR   00C4H   A   
+T21_T2LH . . . . .  D ADDR   00C4H   A   
+T21_T2MOD. . . . .  D ADDR   00C1H   A   
+T2_RC2H. . . . . .  D ADDR   00C3H   A   
+T2_RC2L. . . . . .  D ADDR   00C2H   A   
+T2_RC2LH . . . . .  D ADDR   00C2H   A   
+T2_T2CON . . . . .  D ADDR   00C0H   A   
+T2_T2H . . . . . .  D ADDR   00C5H   A   
+T2_T2L . . . . . .  D ADDR   00C4H   A   
+T2_T2LH. . . . . .  D ADDR   00C4H   A   
+T2_T2MOD . . . . .  D ADDR   00C1H   A   
+TB8. . . . . . . .  B ADDR   0098H.3 A   
+TB8_1. . . . . . .  B ADDR   00C8H.3 A   
+TCON . . . . . . .  D ADDR   0088H   A   
+TF0. . . . . . . .  B ADDR   0088H.5 A   
+TF1. . . . . . . .  B ADDR   0088H.7 A   
+TF2. . . . . . . .  B ADDR   00C0H.7 A   
+TH0. . . . . . . .  D ADDR   008CH   A   
+TH1. . . . . . . .  D ADDR   008DH   A   
+TI . . . . . . . .  B ADDR   0098H.1 A   
+TI_1 . . . . . . .  B ADDR   00C8H.1 A   
+TL0. . . . . . . .  D ADDR   008AH   A   
+TL1. . . . . . . .  D ADDR   008BH   A   
+TMOD . . . . . . .  D ADDR   0089H   A   
+TR0. . . . . . . .  B ADDR   0088H.4 A   
+TR1. . . . . . . .  B ADDR   0088H.6 A   
+TR2. . . . . . . .  B ADDR   00C0H.2 A   
+U1 . . . . . . . .  C ADDR   002BH   A   
+UART1_BCON . . . .  D ADDR   00CAH   A   
+UART1_BG . . . . .  D ADDR   00CBH   A   
+UART1_FDCON. . . .  D ADDR   00CCH   A   
+UART1_FDRES. . . .  D ADDR   00CEH   A   
+UART1_FDSTEP . . .  D ADDR   00CDH   A   
+UART1_SBUF . . . .  D ADDR   00C9H   A   
+UART1_SCON . . . .  D ADDR   00C8H   A   
+WDTCON . . . . . .  D ADDR   00BBH   A   
+WDTH . . . . . . .  D ADDR   00BFH   A   
+WDTL . . . . . . .  D ADDR   00BEH   A   
+WDTREL . . . . . .  D ADDR   00BCH   A   
+WDTWINB. . . . . .  D ADDR   00BDH   A   
+X. . . . . . . . .  N NUMB   00FAH   A   
+XADDRH . . . . . .  D ADDR   00B3H   A   
+Y. . . . . . . . .  N NUMB   0032H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

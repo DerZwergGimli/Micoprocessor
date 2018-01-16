@@ -1,0 +1,3 @@
+".\Objects\CompulsoryTask_2.obj" 
+TO ".\Objects\CompulsoryTask_2" 
+PRINT(".\Listings\CompulsoryTask_2.m51") RAMSIZE(256) 

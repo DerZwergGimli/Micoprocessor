@@ -1,0 +1,3 @@
+".\Objects\compTask3.obj" 
+TO ".\Objects\compTask3" 
+PRINT(".\Listings\compTask3.m51") RAMSIZE(256) 

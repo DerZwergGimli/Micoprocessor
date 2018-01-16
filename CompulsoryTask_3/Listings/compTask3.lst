@@ -1,0 +1,174 @@
+C51 COMPILER V9.56.0.0   COMPTASK3                                                         12/12/2017 08:44:28 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE COMPTASK3
+OBJECT MODULE PLACED IN .\Objects\compTask3.obj
+COMPILER INVOKED BY: C:\Program Files\Keil_v5\C51\BIN\C51.EXE compTask3.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PR
+                    -INT(.\Listings\compTask3.lst) TABS(2) OBJECT(.\Objects\compTask3.obj)
+
+line level    source
+
+   1          /* HomeWork Task 3
+   2          ******************************/
+   3          #include <XC886CLM.H>
+   4          #include <XC886_lib.c>
+   5          #include <XC886_lib.h>
+   6          //******************************
+   7          //This is a modification of task2, I/O
+   8          //
+   9          //
+  10          //On the Trainingboard, Pin 2.0 is connected to a push button with a high level as default.
+  11          //This push button is to be used to control the action of the LEDs of Port 3. 
+  12          //By powering up the board, sequence 1 should be started. 
+  13          //Each time the button is pressed(= low level), the next sequence should be activated at Port 3.
+  14          //When the button is pressed after sequence 4, sequence 1 should start again.
+  15          //
+  16          //Sequence1:
+  17          //Running light, right to left: LED 3.0 is on, then 3.1 with 3.0 off and so on. After reaching 3.7, the se
+             -quence repeats again.
+  18          //
+  19          //Sequence2:
+  20          //All LEDs on Port 3.0 are blinking simultaneously
+  21          //
+  22          //Sequence3:
+  23          //Running light, left to right. As for 1, however, the direction has changed.
+  24          //
+  25          //Sequence4:
+  26          //Same as sequence 2
+  27          //
+  28          //
+  29          //
+  30          //
+  31          //*******Prototypes ***********
+  32          void init (void);
+  33          //******* Variables ***********
+  34          unsigned int value=1;
+  35          unsigned int n=1;       //current sequence
+  36          unsigned int blink =0;
+  37          
+  38          unsigned int i1;
+  39          unsigned int i2;
+  40          //*****************************
+  41          
+  42          void main (void)
+  43          {
+  44   1        init();
+  45   1        while (1)
+  46   1        {
+  47   2          switch(n)
+  48   2          {
+  49   3            lcd_curs(18);
+  50   3            lcd_int(n);
+  51   3            //Check STATE
+  52   3            case 1: 
+  53   3              {           
+C51 COMPILER V9.56.0.0   COMPTASK3                                                         12/12/2017 08:44:28 PAGE 2   
+
+  54   4                    value++;
+  55   4                    P3_DATA = value;
+  56   4                    if(value == 255){value = 0;}
+  57   4                    break;
+  58   4              }
+  59   3            case 2:
+  60   3              {
+  61   4                if(blink == 0){
+  62   5                  P3_DATA = 0;
+  63   5                  blink++;}
+  64   4                else {
+  65   5                  P3_DATA = 0xFF;
+  66   5                  blink = 0;}
+  67   4                
+  68   4                  break;
+  69   4              }
+  70   3            case 3:
+  71   3              {
+  72   4                value--;
+  73   4                P3_DATA = value;
+  74   4                if(value == 0){value = 255;}
+  75   4                break;
+  76   4              }
+  77   3            case 4:
+  78   3              {
+  79   4                  if(blink == 0){
+  80   5                  P3_DATA = 0;
+  81   5                  blink++;}
+  82   4                else {
+  83   5                  P3_DATA = 0xFF;
+  84   5                  blink = 0;}
+  85   4                
+  86   4                  break;
+  87   4              }
+  88   3            
+  89   3          }
+  90   2        
+  91   2          
+  92   2          for(i1=0; i1<4095; i1++)
+  93   2          {
+  94   3          for(i2=0; i2<150; i2++){;}
+  95   3          }
+  96   2      }
+  97   1        }
+  98          
+  99          
+ 100          void sequence1(void)
+ 101          { //evlt. loop here
+ 102   1        value++;
+ 103   1        P3_DATA = 0;
+ 104   1        if(value == 255){value = 0;}
+ 105   1      }
+ 106          
+ 107          void init(void)
+ 108          {
+ 109   1        //init Ports
+ 110   1        PORT_PAGE = 0;
+ 111   1        P2_DIR = 0;     //use Port2 as INPUT
+ 112   1        P2_DATA = 0;
+ 113   1        P3_DIR = 0xFF;  //use Port3 as OUTPUT
+ 114   1        P3_DATA = 0;
+ 115   1        
+C51 COMPILER V9.56.0.0   COMPTASK3                                                         12/12/2017 08:44:28 PAGE 3   
+
+ 116   1        //init ISR
+ 117   1        EX1 = 1; //enabele ext. interrupt
+ 118   1        IT1 =1;  //interrupt on falling-edge
+ 119   1        EA =1;   //activate all ISR
+ 120   1        
+ 121   1        lcd_init();       //actvate LCD
+ 122   1        lcd_clr();        //clears the LCD
+ 123   1        lcd_str("Sequence Number = "); //sets text for LCD
+ 124   1      }
+ 125          
+ 126          
+ 127          
+ 128          
+ 129          
+ 130          void ISR_P20(void) interrupt 2
+ 131          {
+ 132   1        //do something when triggert
+ 133   1        if (n == 4)
+ 134   1          {
+ 135   2            n = 1;
+ 136   2          }
+ 137   1        else 
+ 138   1          {
+ 139   2            n ++;
+ 140   2          }
+ 141   1        P2_DATA = 0;
+ 142   1        IRCON0 = 0; //clr ISR-Flag
+ 143   1      }
+ 144          
+*** WARNING C294 IN LINE 49 OF compTask3.c: unreachable code
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1396    ----
+   CONSTANT SIZE    =     19    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     12      18
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       2
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
