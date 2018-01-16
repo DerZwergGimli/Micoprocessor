@@ -1,0 +1,138 @@
+C51 COMPILER V9.56.0.0   COMTASK                                                           01/16/2018 05:15:15 PAGE 1   
+
+
+C51 COMPILER V9.56.0.0, COMPILATION OF MODULE COMTASK
+OBJECT MODULE PLACED IN .\Objects\comTask.obj
+COMPILER INVOKED BY: C:\Program Files\Keil_v5\C51\BIN\C51.EXE comTask.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRIN
+                    -T(.\Listings\comTask.lst) TABS(2) OBJECT(.\Objects\comTask.obj)
+
+line level    source
+
+   1          /* HomeWork Task 3
+   2          ******************************/
+   3          #include <XC886CLM.H>
+   4          #include <XC886_lib.c>
+   5          #include <XC886_lib.h>
+   6          //******************************
+   7          //This is a modification of task2, I/O
+   8          //
+   9          //
+  10          //On the Trainingboard, Pin 2.0 is connected to a push button with a high level as default.
+  11          //This push button is to be used to control the action of the LEDs of Port 3. 
+  12          //By powering up the board, sequence 1 should be started. 
+  13          //Each time the button is pressed(= low level), the next sequence should be activated at Port 3.
+  14          //When the button is pressed after sequence 4, sequence 1 should start again.
+  15          //
+  16          //Sequence1:
+  17          //Running light, right to left: LED 3.0 is on, then 3.1 with 3.0 off and so on. After reaching 3.7, the se
+             -quence repeats again.
+  18          //
+  19          //Sequence2:
+  20          //All LEDs on Port 3.0 are blinking simultaneously
+  21          //
+  22          //Sequence3:
+  23          //Running light, left to right. As for 1, however, the direction has changed.
+  24          //
+  25          //Sequence4:
+  26          //Same as sequence 2
+  27          //
+  28          //
+  29          //
+  30          //
+  31          //*******Prototypes ***********
+  32          void init (void);
+  33          //******* Variables ***********
+  34          unsigned int ts = 10; //ms
+  35          unsigned int tp = 3750*(2) ;
+  36          //*****************************
+  37          
+  38          void main (void)
+  39          {
+  40   1        init();
+  41   1        while(1)
+  42   1        {
+  43   2          ;
+  44   2        }
+  45   1      }
+  46          
+  47          
+  48          
+  49          void init(void)
+  50          {
+  51   1        //init Ports
+  52   1        //PORT_PAGE = 0;
+  53   1        //P2_DIR = 0;     //use Port2 as INPUT
+C51 COMPILER V9.56.0.0   COMTASK                                                           01/16/2018 05:15:15 PAGE 2   
+
+  54   1        //P2_DATA = 0;
+  55   1        //P3_DIR = 0xFF;  //use Port3 as OUTPUT
+  56   1        //P3_DATA = 0;
+  57   1        
+  58   1        //init ISR
+  59   1        //EX1 = 1; //enabele ext. interrupt
+  60   1        //IT1 =1;  //interrupt on falling-edge
+  61   1        //EA =1;   //activate all ISR
+  62   1        
+  63   1        //lcd_init();       //actvate LCD
+  64   1        //lcd_clr();        //clears the LCD
+  65   1        //lcd_str("Sequence Number = "); //sets text for LCD
+  66   1        
+  67   1        //
+  68   1        //Port Init
+  69   1        PORT_PAGE =2;
+  70   1        P3_ALTSEL0 = 0x80;
+  71   1        P3_ALTSEL1 = 0x00;
+  72   1        PORT_PAGE = 0;
+  73   1        P3_DIR = 0x80;
+  74   1        
+  75   1        //TIMER INIT
+  76   1        CCU6_PAGE = 1;
+  77   1        CCU6_TCTR0H = 0x06;         //prescaler = 64
+  78   1        CCU6_T13PRL = 0xa6;         //RELOAD after 3750 ticks => T13PR
+  79   1        CCU6_PAGE = 2;
+  80   1        CCU6_MODCTRH = 0x80;        //ENABLE COUNT63_0 on P3.7
+  81   1        CCU6_PAGE = 0;
+  82   1        CCU6_CC63SRL = 0x53;        //Compare after 1875 ticks
+  83   1        CCU6_CC63SRH = 0x07;
+  84   1        CCU6_TCTR4H = 0x42;         //run, shadow enable
+  85   1        //
+  86   1        
+  87   1        
+  88   1        
+  89   1      }
+  90          
+  91          
+  92          
+  93          
+  94          
+  95          //void ISR_P20(void) interrupt 2
+  96          //{
+  97            //do something when triggert
+  98          //  if (n == 4)
+  99          //    {
+ 100          //      n = 1;
+ 101          //    }
+ 102          //  else 
+ 103          //    {
+ 104          //      n ++;
+ 105          //    }
+ 106          //  P2_DATA = 0;
+ 107          //  IRCON0 = 0; //clr ISR-Flag
+ 108          //}
+ 109          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1193    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.56.0.0   COMTASK                                                           01/16/2018 05:15:15 PAGE 3   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6      18
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----       2
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

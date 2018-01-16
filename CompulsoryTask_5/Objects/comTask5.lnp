@@ -1,0 +1,3 @@
+".\Objects\comTask.obj" 
+TO ".\Objects\comTask5" 
+PRINT(".\Listings\comTask5.m51") RAMSIZE(256) 
