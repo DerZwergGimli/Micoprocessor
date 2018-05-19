@@ -14,7 +14,7 @@ extern unsigned char ADC_Busy(void);
 
 extern void lcd_init(void);		// Init LCD
 extern void lcd_clr(void);	 		// LCD Löschen 
-extern void lcd_byte(char);  		// Ausgabe unsigned char  => 3 stellig
+extern void lcd_byte(char);  		// Ausgabe unsigned char  => 3 stellige Zahl
 extern void lcd_str(char *ptr);	// Ausgabe String
 extern void lcd_curs(char);		// Cursor setzen
 extern void wait_bsy1(void);  		// kurz warten
